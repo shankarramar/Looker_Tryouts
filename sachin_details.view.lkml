@@ -83,30 +83,23 @@ view: sachin_details {
   }
 
   measure: no_of_matches {
-    type: count_distinct
-    sql: ${TABLE}.MATCH_ID ;;
+    type: number
+    sql: count(${TABLE}.MATCH_ID) ;;
   }
 
   measure: centuries {
-    type: count_distinct
-    sql: ${TABLE}.RUNS ;;
-    filters: {
-      field: runs
-      value: ">=100"
-    }
+    type: number
+    sql: count(${TABLE}.RUNS) ;;
   }
 
   measure: no_of_innings {
-    type: count_distinct
-    sql: ${TABLE}.INNINGS ;;
-    filters: {
-      field: out_type
-      value: "-NOT OUT, -DNB"
-    }
+    type: number
+    sql: count(${innings}) ;;
   }
 
   measure: no_of_out_type {
-    type: count_distinct
-    sql: ${TABLE}.OUT_TYPE ;;
+    type: number
+    sql: count(${TABLE}.OUT_TYPE) ;;
   }
+
 }
