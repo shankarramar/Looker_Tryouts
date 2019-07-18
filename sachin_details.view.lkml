@@ -94,12 +94,18 @@ view: sachin_details {
 
   measure: no_of_innings {
     type: number
-    sql: count(${innings}) ;;
+    sql: sum(${out_type_flag}) ;;
   }
 
   measure: no_of_out_type {
     type: number
     sql: count(${TABLE}.OUT_TYPE) ;;
+  }
+
+  measure: out_type_flag {
+    hidden: yes
+    type: number
+    sql: case when ${out_type}='NOT OUT' or ${out_type}='DNB' then 0 else 1 end;;
   }
 
 }
